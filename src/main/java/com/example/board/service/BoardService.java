@@ -24,6 +24,10 @@ public class BoardService {
         return boardRepository.save(newPost);
     }
 
+    public Post findById(Long id) {
+        return boardRepository.findById(id);
+    }
+
     public List<Post> findAll() {
         return boardRepository.findAll();
     }

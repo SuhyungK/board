@@ -40,10 +40,9 @@ public class BoardController {
     }
 
     @GetMapping("/posts/{id}")
-    public String postView(@PathVariable Integer id, Model model) {
-        Post post = new Post(1, "1번 게시글", "1번 게시글의 내용", "작성자1", LocalDateTime.now());
-
-        model.addAttribute("post", post);
+    public String postView(@PathVariable Long id, Model model) {
+        Post findPost = boardService.findById(id);
+        model.addAttribute("post", findPost);
         return "post-detail";
     }
 
@@ -55,7 +54,7 @@ public class BoardController {
 
     @PostMapping("/posts")
     public String addPost(@ModelAttribute PostSaveDTO postSaveDTO) {
-        boardService.save(postSaveDTO);
-        return "redirect:posts/" + 1;
+        Post savedPost = boardService.save(postSaveDTO);
+        return "redirect:posts/" + savedPost.getId();
     }
 }

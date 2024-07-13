@@ -7,9 +7,22 @@
         insert into board (title, content, author, createdAt)
         values (#{title}, #{content}, #{author}, #{createdAt})
     </insert>
+
+    <select id="findById" resultType="Post">
+        select *
+        from board
+        where id=#{id}
+    </select>
     
-    <select id="findAll" resultType="com.example.board.domain.Post">
+    <select id="findAll" resultType="Post">
         select *
         from board
     </select>
+
+    <delete id="delete">
+        delete
+        from board
+        where id=#{id}
+    </delete>
+
 </mapper>

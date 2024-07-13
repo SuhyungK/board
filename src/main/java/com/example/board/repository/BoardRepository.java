@@ -3,6 +3,7 @@ package com.example.board.repository;
 import com.example.board.domain.Post;
 import com.example.board.dto.PostSaveDTO;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +19,15 @@ public class BoardRepository {
         return post;
     }
 
+    public Post findById(@Param("id") Long id) {
+        return boardMapper.findById(id);
+    }
+
     public List<Post> findAll() {
         return boardMapper.findAll();
+    }
+
+    public void delete(Long id) {
+        boardMapper.delete(id);
     }
 }
