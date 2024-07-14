@@ -19,6 +19,12 @@
         from board
     </select>
 
+    <update id="update" parameterType="Post">
+        update board
+        set title=#{title}, content=#{content}
+        where id=#{id}
+    </update>
+
     <delete id="delete">
         delete
         from board

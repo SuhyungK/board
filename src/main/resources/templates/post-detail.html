@@ -37,11 +37,26 @@
             text-decoration: none;
             color: #007bff;
         }
+        .board-actions {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .board-actions a {
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
 <div class="post-container">
     <h1 th:text="${post.title}">상세 게시글 보기</h1>
+    <div class="board-actions">
+        <a href="/edit-post" th:href="@{/posts/edit/{id}(id=${post.id})}">수정하기</a>
+        <a href="/edit-post" th:href="@{/posts/edit/{id}(id=${post.id})}">삭제하기</a>
+    </div>
     <div class="post-details">
         <h2>제목:</h2>
         <p th:text="${post.title}">게시글 제목 예시</p>

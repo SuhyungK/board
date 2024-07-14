@@ -52,11 +52,13 @@ class BoardMapperTest {
                 .build()
                 ;
         boardMapper.save(newPost);
+//        boardMapper.save(newPost);
 
         // when
         Post findPost = boardMapper.findById(1L);
 
         // then
+        assertThat(newPost.getId()).isNotNull();
         assertThat(findPost.getId()).isEqualTo(1L);
         assertThat(findPost.getTitle()).isEqualTo("테스트 제목");
         assertThat(findPost.getContent()).isEqualTo("테스트 내용");
