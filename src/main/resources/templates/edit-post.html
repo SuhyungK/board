@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <title>새 글 작성</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #000;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group textarea {
+            height: 150px; /* 텍스트 에어리어의 높이 조정 */
+        }
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>글 수정</h1>
+    <form th:action="@{/posts/{id}(id=${post.id})}" th:object="${post}" method="post" th:method="put">
+        <div class="form-group">
+            <label for="title">제목:</label>
+            <input type="text" id="title" th:field="*{title}" th:required>
+        </div>
+        <div class="form-group">
+            <label for="author">작성자:</label>
+            <input type="text" id="author" th:field="*{author}" th:required>
+        </div>
+        <div class="form-group">
+            <label for="content">내용:</label>
+            <textarea id="content" th:field="*{content}" th:required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">작성 완료</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

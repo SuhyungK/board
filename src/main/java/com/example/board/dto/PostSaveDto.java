@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PostSaveDTO {
+public class PostSaveDto {
     public String title;
     public String content;
     public String author; // 작성자
