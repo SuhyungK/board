@@ -4,12 +4,19 @@ import com.example.board.domain.Post;
 import com.example.board.dto.PostEditDto;
 import com.example.board.dto.PostSaveDto;
 import com.example.board.service.BoardService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 @Slf4j
@@ -92,8 +99,12 @@ public class BoardController {
     }
 
     @DeleteMapping("/posts/{id}")
-    public String deletePost(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.SEE_OTHER)
+    public ResponseEntity<?> deletePost(@PathVariable Long id, HttpServletResponse res) throws IOException {
         boardService.delete(id);
-        return "redirect:/";
+        log.info("삭제 테스트");
+        return ResponseEntity.status(HttpStatus.SEE_OTHER)
+                .header(HttpHeaders.LOCATION, "/")
+                .build();
     }
 }
