@@ -19,9 +19,9 @@
         from board
     </select>
 
-    <update id="update" parameterType="Post">
+    <update id="update">
         update board
-        set title=#{title}, content=#{content}
+        set title=#{post.title}, content=#{post.content}
         where id=#{id}
     </update>
 

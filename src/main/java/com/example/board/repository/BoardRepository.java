@@ -33,8 +33,8 @@ public class BoardRepository {
         return boardMapper.findAll();
     }
 
-    public Post update(Post post) {
-        boardMapper.update(post);
+    public Post update(Long id, Post post) {
+        boardMapper.update(id, post);
         return post;
     }
 

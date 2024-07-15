@@ -27,11 +27,11 @@ public class BoardService {
         return boardRepository.save(newPost);
     }
 
-    public Post edit(PostEditDto dto) {
-        Post post = boardMapper.findById(dto.getId());
+    public Post edit(Long id, PostEditDto dto) {
+        Post post = new Post();
         post.setTitle(dto.getTitle());
         post.setContent(dto.getContent());
-        boardMapper.update(post);
+        boardMapper.update(id, post);
         return post;
     }
 

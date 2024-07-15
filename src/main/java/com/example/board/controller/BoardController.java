@@ -94,8 +94,8 @@ public class BoardController {
      */
     @PutMapping("/posts/{id}")
     public String updatePost(@PathVariable Long id, @ModelAttribute PostEditDto post) {
-        boardService.edit(post);
-        return "redirect:/posts/" + post.getId();
+        boardService.edit(id, post);
+        return "redirect:/posts/" + id;
     }
 
     @DeleteMapping("/posts/{id}")

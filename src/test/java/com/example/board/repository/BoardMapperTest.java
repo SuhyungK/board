@@ -1,6 +1,7 @@
 package com.example.board.repository;
 
 import com.example.board.domain.Post;
+import com.example.board.dto.PostEditDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ class BoardMapperTest {
     }
     
     @Test
-    @DisplayName("게시글 저장 후 개별 게시글 조회시 성공")
+    @DisplayName("개별 게시글 조회시 성공")
     void one_post_find_success() {
         // given
         Post newPost = Post.builder()
@@ -123,5 +124,34 @@ class BoardMapperTest {
 
         // then
         assertThat(deleteResult).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("유효한 게시글 수정 성공")
+    void post_edit_success() {
+        // given
+        Post post = Post.builder()
+                .title("수정 전 제목")
+                .content("수정 전 내용")
+                .author("admin")
+                .build()
+                ;
+        boardMapper.save(post);
+        Long postId = post.getId(); // 이전에 저장된 게시글의 PK
+
+        String afterEditTitle = "수정 후 제목";
+        String afterEditContent = "수정 후 내용";
+        Post afterEdit = Post.builder()
+                .title(afterEditTitle)
+                .content(afterEditContent)
+                .author("admin")
+                .build()
+                ;
+
+        // when
+        int resultRowCount = boardMapper.update(postId, afterEdit);
+
+        // then
+        assertThat(resultRowCount).isEqualTo(1);
     }
 }
